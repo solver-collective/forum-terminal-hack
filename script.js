@@ -13,7 +13,30 @@ const validateEmail = (email) => {
       );
   };
 
-var term = $('.body').terminal(function(command) {
+const klaviyoPostProfile = async () => {
+    try{
+        const options = {
+            method: 'POST',
+            headers: {Accept: 'text/html', 'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams({
+                data: JSON.stringify({
+                    token: "UcVhyR",
+                    properties: {
+                        "$email": email,
+                        "Full Name": fullname
+                    }
+                })
+            })
+        };
+        
+        let response = await fetch('https://a.klaviyo.com/api/identify', options);
+        return response.json();
+    }catch(e){
+        console.error(e);
+    }
+}
+
+var term = $('.body').terminal(async function(command) {
     if(!command && !dataEntryMode){
         ssh_hack(this);
     }
@@ -32,6 +55,8 @@ var term = $('.body').terminal(function(command) {
             fullname = command;
             fullnameEntered = true;
             // after last attribute is entered, submit data to Klaviyo API
+            // ensure function is edited to include all fields to add to Klaviyo profile
+            await klaviyoPostProfile();
             term.echo('\nYour hack attempt has been reported to the FBI\n\n');
             dataEntryMode = false;
             term.freeze(true);
