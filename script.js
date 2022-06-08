@@ -93,11 +93,11 @@ async function ssh_hack(term) {
     // Application Init - Boot Sequence
     term.set_prompt('');
     async function step(msg) {
-        msg = `${msg} ...`;
+        msg = `${msg}`;
         term.echo(msg);
         var id = term.last_index();
         await delay(2000);
-        msg += ' successful.';
+        msg += '\n...successful.';
         term.update(-1, msg);
     }
     await step('Connecting to adhoc NET 19.97.31.01:ssh ');
@@ -107,7 +107,7 @@ async function ssh_hack(term) {
     term.echo([
         '[_PROTOTYPE_EXPERIMENTAL_0001_]',
         '',
-        '[L1550]\t\t[R800]\t\t\t[WP294.92]\n[NP251]\t\t[N/TL1955]\t\t[LAUNCH_2022/2023_]'
+        '[L1550]\t\t[R800]\t\t\t[WP294.92]\n[NP251]\t\t[N/TL1955]\t\t[LAUNCH_2022/2023]'
     ].join('\n'));
     term.echo('');
     // App Loading
@@ -146,7 +146,7 @@ async function ssh_hack(term) {
         ].join('\n'));
     
     // Warning - Team Activation Sequence
-    await term.typing('enter', 100, 'LOADING - - - - -');
+    await term.typing('enter', 100, 'LOADING.........');
     term.set_prompt('');
     await delay(800);
     term.echo('[LOADING_NEXT]');
@@ -154,7 +154,7 @@ async function ssh_hack(term) {
     term.echo('[TESTERS_- - -]');
     await delay(800);
     term.echo('[TEAM_- - - ]\n\n');
-    await delay(1000);
+    await delay(2000);
     term.echo('[[;#B9EDFF;]Warning: Activating TEST_LOCATION/S]');
     term.set_prompt('');
     term.echo('         [[;#B9EDFF;]ARE YOU SURE? (y/n)]');
