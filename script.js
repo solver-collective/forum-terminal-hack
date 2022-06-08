@@ -20,7 +20,7 @@ const klaviyoPostProfile = async () => {
             headers: {Accept: 'text/html', 'Content-Type': 'application/x-www-form-urlencoded'},
             body: new URLSearchParams({
                 data: JSON.stringify({
-                    token: "UcVhyR",
+                    token: "R58uJx",
                     properties: {
                         "$email": email,
                         "Full Name": fullname
