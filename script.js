@@ -5,6 +5,7 @@ var dataEntryMode = false;
 var email;
 var purpose;
 var date = new Date();
+var testers = Math.floor(Math.random() * 30) + 1;
 
 const validateEmail = (email) => {
     return String(email)
@@ -161,7 +162,7 @@ async function ssh_hack(term) {
     term.update(-1, '         [[;#B9EDFF;]ARE YOU SURE? (y/n)] y');
     term.echo('');
     await delay(200);
-    for (let i = 21; i <= 48; i++) {
+    for (let i = 1; i <= testers; i++) {
         term.echo(`[[;#B9EDFF;]TESTERS ${i} online...]`);
         await delay(200);
     }
