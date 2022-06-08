@@ -188,7 +188,7 @@ async function ssh_hack(term) {
     // Close App
     term.echo('\nConnection to [_PROTOTYPE_EXPERIMENTAL_0001_] closed.');
     // Verify User Control
-    term.echo('\nPlease enter your email to continue:');
+    term.echo('\nEnter your email to continue:');
     term.set_prompt('# ');
     animation = false;
     dataEntryMode = true;
