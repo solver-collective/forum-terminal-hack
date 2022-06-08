@@ -1,6 +1,10 @@
 body {
     background: #252525;
 }
+
+input:focus {
+    outline: none ! important;
+}
 .terminal-dialog {
     --size: 1.4;
     --background: #252525;
