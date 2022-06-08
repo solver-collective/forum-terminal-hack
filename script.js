@@ -75,9 +75,10 @@ var term = $('.body').terminal(async function(command) {
         }
     },
     prompt: '# ',
-    onBlur: function() {
-        return false;
-    }
+    // obBlur will prevent the keyboard on mobile from popup because it will keep the terminal in focus and on mobile the terminal has to be disabled on init so you can activate it with a finger tap 
+    //onBlur: function() {
+        //return false;
+    //}
 });
 
 ssh_hack(term);
