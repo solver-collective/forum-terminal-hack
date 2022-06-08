@@ -57,7 +57,7 @@ var term = $('.body').terminal(async function(command) {
             // after last attribute is entered, submit data to Klaviyo API
             // ensure function is edited to include all fields to add to Klaviyo profile
             await klaviyoPostProfile();
-            term.echo('\nYour hack attempt has been reported to the FBI\n\n');
+            term.echo('\nYour hack attempt has been reported to the Central Mainframe\n\n');
             dataEntryMode = false;
             term.freeze(true);
             term.set_prompt('');
@@ -70,7 +70,7 @@ var term = $('.body').terminal(async function(command) {
             return false;
         }
     },
-    prompt: '$ ',
+    prompt: '# ',
     onBlur: function() {
         return false;
     }
