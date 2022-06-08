@@ -1,14 +1,14 @@
 body {
-    background: black;
+    background: #252525;
 }
 .terminal-dialog {
     --size: 1.4;
-    --background: black;
-    --color: rgba(85, 234, 167, 0.95);
+    --background: #252525;
+    --color: #c8dd00;
     border: 2px solid var(--color);
     background: var(--background);
-    width: 800px;
-    height: 400px;
+    width: 100vw;
+    height: 100vh;
     min-height: 100px;
     min-width: 250px;
     max-width: calc(100vw - 40px);
@@ -16,6 +16,11 @@ body {
     z-index: 100;
     resize: both;
     overflow: auto;
+}
+@media only screen and (max-width: 600px) {
+    .terminal-dialog {
+        --size: 1;
+    }
 }
 .terminal-dialog .body {
     width: 100%;
@@ -45,7 +50,7 @@ body {
     right: 10px;
     width: calc(100% - 55px - 5px);
     height: 15px;
-    background: #138B5F;
+    background: var(--color);
 }
 .terminal-dialog header .title::before {
     content: "[ ";
