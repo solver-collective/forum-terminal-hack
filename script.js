@@ -127,7 +127,7 @@ async function ssh_hack(term) {
     await term.typing('enter', 100, '[EXPERIMENTAL_TEST_PROGRAM_]');
     await delay(1500);
     await term.typing('enter', 60, '...........................');
-    await term.typing('enter', 60, '////\t////\t////\t////\t////\t////');
+    await term.typing('enter', 60, '////\t////\t////\t////');
     await term.typing('enter', 30, [
         '                          ',
         '                          ',
