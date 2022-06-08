@@ -163,7 +163,7 @@ async function ssh_hack(term) {
     term.echo('');
     await delay(200);
     for (let i = 1; i <= testers; i++) {
-        term.echo(`[[;#B9EDFF;]TESTER ${i} online...]`);
+        term.echo(`[[;#B9EDFF;]TEST_LOCATION ${i} online...]`);
         await delay(200);
     }
     // Crash Reported

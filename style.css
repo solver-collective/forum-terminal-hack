@@ -12,11 +12,11 @@ input:focus, textarea:focus, select:focus{
     border: 2px solid var(--color);
     background: var(--background);
     width: 100vw;
-    height: calc(100vh - 140px);
+    height: calc(100vh - 40px);
     min-height: 100px;
     min-width: 250px;
     max-width: calc(100vw - 40px);
-    max-height: calc(100vh - 140px);
+    max-height: calc(100vh - 40px);
     z-index: 100;
     resize: both;
     overflow: auto;
@@ -24,6 +24,8 @@ input:focus, textarea:focus, select:focus{
 @media only screen and (max-width: 600px) {
     .terminal-dialog {
         --size: 1;
+        height: calc(100vh - 140px);
+        max-height: calc(100vh - 140px);
     }
 }
 .terminal-dialog .body {
