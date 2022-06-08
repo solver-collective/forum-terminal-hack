@@ -1,7 +1,7 @@
 body {
     background: black;
 }
-.trinity-dialog {
+.terminal-dialog {
     --size: 1.4;
     --background: black;
     --color: rgba(85, 234, 167, 0.95);
@@ -17,26 +17,26 @@ body {
     resize: both;
     overflow: auto;
 }
-.trinity-dialog .body {
+.terminal-dialog .body {
     width: 100%;
     height: calc(100% - 28px);
 }
-.trinity-dialog, .trinity-dialog header .title {
+.terminal-dialog, .terminal-dialog header .title {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
-.trinity-dialog header .title {
+.terminal-dialog header .title {
     margin-top: -2px;
     background: var(--color);
     padding: 1px 10px;
 }
-.trinity-dialog header {
+.terminal-dialog header {
     background: var(--color);
     position: relative;
 }
-.trinity-dialog header::before {
+.terminal-dialog header::before {
     content: "";
     display: block;
     position: absolute;
@@ -47,19 +47,19 @@ body {
     height: 15px;
     background: #138B5F;
 }
-.trinity-dialog header .title::before {
+.terminal-dialog header .title::before {
     content: "[ ";
 }
-.trinity-dialog header .title::after {
+.terminal-dialog header .title::after {
     content: " ]";
 }
-.trinity-dialog header ul {
+.terminal-dialog header ul {
     margin: 0;
     padding: 0;
     list-style: none;
     display: inline-block;
 }
-.trinity-dialog header li {
+.terminal-dialog header li {
     display: inline-block;
     margin: 3px;
     width: 14px;
