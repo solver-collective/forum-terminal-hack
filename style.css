@@ -2,8 +2,8 @@ body {
     background: #252525;
 }
 
-input:focus {
-    outline: none ! important;
+input:focus, textarea:focus, select:focus{
+    outline: none;
 }
 .terminal-dialog {
     --size: 1.4;
