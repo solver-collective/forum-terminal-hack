@@ -8,11 +8,11 @@ body {
     border: 2px solid var(--color);
     background: var(--background);
     width: 100vw;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 140px);
     min-height: 100px;
     min-width: 250px;
     max-width: calc(100vw - 40px);
-    max-height: calc(100vh - 80px);
+    max-height: calc(100vh - 140px);
     z-index: 100;
     resize: both;
     overflow: auto;
