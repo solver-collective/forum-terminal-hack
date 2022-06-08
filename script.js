@@ -1,9 +1,10 @@
 var animation;
 var emailEntered = false;
-var fullnameEntered = false;
+var purposeEntered = false;
 var dataEntryMode = false;
 var email;
-var fullname;
+var purpose;
+var date = new Date();
 
 const validateEmail = (email) => {
     return String(email)
@@ -23,7 +24,7 @@ const klaviyoPostProfile = async () => {
                     token: "R58uJx",
                     properties: {
                         "$email": email,
-                        "Full Name": fullname
+                        "Purpose": purpose
                     }
                 })
             })
@@ -45,19 +46,21 @@ var term = $('.body').terminal(async function(command) {
             if(validateEmail(command.trim())){
                 email = command.trim();
                 emailEntered = true;
-                term.echo('\nPlease enter your full name to continue:');
+                term.echo('\nWhat is your purpose here?');
                 term.set_prompt('# ');
             }else{
                 term.echo('\nInvalid email entered. Enter valid email address:');
                 term.set_prompt('# ');
             }
-        }else if(!fullnameEntered){
-            fullname = command;
-            fullnameEntered = true;
+        }else if(!purposeEntered){
+            purpose = command;
+            purposeEntered = true;
             // after last attribute is entered, submit data to Klaviyo API
             // ensure function is edited to include all fields to add to Klaviyo profile
             await klaviyoPostProfile();
-            term.echo('\nYour hack attempt has been reported to the Central Mainframe\n\n');
+            term.echo('\nData comm transmission processed.');
+            await delay(400);
+            term.echo('Verify comm link to acquire further access.');
             dataEntryMode = false;
             term.freeze(true);
             term.set_prompt('');
@@ -86,63 +89,105 @@ function delay(timeout) {
 
 async function ssh_hack(term) {
     animation = true;
-    // hacking sequence from Matrix Reloaded
-    term.clear().echo([
-        '# loadingNext -v -sS -O 0.2.2.2',
-        '[ _PROTOTYPE_EXPERIMENTAL_0001_ ]',
-        '',
-        'Starting nmap V. 2.54BETA25',
-        'Insufficient responses for TCP sequencing (3). OS detection may be less',
-        'accurate',
-        'Interesting ports on 10.2.2.2:',
-        '(The 1539 ports scanned but not shown below are in state: closed)',
-        'Port\t\tState\t\tService\n22/tcp\t\topen\t\tssh',
-        '',
-        'No exact OS matches for host',
-        '',
-        'Nmap run completed -- 1 IP address (1 host up) scanneds'
-    ].join('\n'));
-    await term.typing('enter', 100, 'loadingNext -v -sS -O 0.2.2.2 -rootpw="PMS396"');
+    // Application Init - Boot Sequence
     term.set_prompt('');
     async function step(msg) {
         msg = `${msg} ...`;
         term.echo(msg);
         var id = term.last_index();
-        await delay(1000);
+        await delay(2000);
         msg += ' successful.';
         term.update(-1, msg);
     }
-    await step('Connecting to 10.2.2.2:ssh');
-    await step('Attempting to exploit SSHv1 CRC32');
+    await step('Connecting to adhoc NET 19.97.31.01:ssh ');
+    await step('Log: ' + date.toLocaleString());
+    await step('Server side exploit SSHv1 4****');
+    await delay(1500);
+    term.echo([
+        '[_PROTOTYPE_EXPERIMENTAL_0001_]',
+        '',
+        '[L1550]\t\t[R800]\t\t\t[WP294.92]\n[NP251]\t\t[N/TL1955]\t\t[LAUNCH_2022/2023_]'
+    ].join('\n'));
+    term.echo('');
+    // App Loading
+    await delay(1000);
+    await term.typing('enter', 100, 'loadingNext -v -sS -O 0.2.7 -rootpw="PMS396"');
+    
     term.echo('Reset root password to "666F72756D".');
     await delay(400);
-    term.echo('CRASH REPORTED');
-    term.set_prompt('# ');
-    await delay(400);
-    await term.typing('enter', 100, 'ssh 10.2.2.2 -l root');
-    term.set_prompt('root@10.2.2.2\'s password: ');
+
+    // Reset Password
+    await term.typing('enter', 100, 'ssh 19.97.31.01 -l root');
+    term.set_prompt('root@19.97.31.01\'s password: ');
     await delay(1000);
-    term.set_prompt('RRF-CONTROL> ').echo('root@10.2.2.2\'s password: \n');
+    term.set_prompt('FRM-CONTROL> ').echo('root@19.97.31.01\'s password: \n');
     await delay(500);
-    await term.typing('enter', 100, 'disable grid nodes 21 - 48');
-    term.echo('LOADING - - - - -');
+
+    // Experimental Test Program Loader
+    await term.typing('enter', 100, '[EXPERIMENTAL_TEST_PROGRAM_]');
+    await delay(1500);
+    await term.typing('enter', 60, '...........................');
+    await term.typing('enter', 60, '////\t////\t////\t////\t////\t////');
+    await term.typing('enter', 30, [
+        '                          ',
+        '                          ',
+        '[;#e0df00;]         @#(((######%@    ',
+        '[;#e0df00;]        @     ** **  @    ',
+        '[;#e0df00;]        @    @@    *@     ',
+        '[;#e0df00;]       @     @@     @     ',
+        '[;#e0df00;]       @@@@@@@@@@@@@@     ',
+        '[;#e0df00;]       @    @@&    @      ',
+        '[;#e0df00;]      @     @@     @      ',
+        '[;#e0df00;]      @ ** **     @       ',
+        '[;#e0df00;]      @@@@@@@@@@@@@       ',
+        '                          ',
+        '                          '
+        ].join('\n'));
+    
+    // Warning - Team Activation Sequence
+    await term.typing('enter', 100, 'LOADING - - - - -');
+    term.set_prompt('');
+    await delay(800);
     term.echo('[LOADING_NEXT]');
-    term.echo('[[;#B9EDFF;]Warning: Disabling TEST_LOCATION/S 21-48 will disconnect sector 11 (27 nodes)]');
+    await delay(800);
+    term.echo('[TESTERS_- - -]');
+    await delay(800);
+    term.echo('[TEAM_- - - ]\n\n');
+    await delay(1000);
+    term.echo('[[;#B9EDFF;]Warning: Activating TEST_LOCATION/S]');
     term.set_prompt('');
     term.echo('         [[;#B9EDFF;]ARE YOU SURE? (y/n)]');
-    await delay(1000);
+    await delay(2000);
     term.update(-1, '         [[;#B9EDFF;]ARE YOU SURE? (y/n)] y');
     term.echo('');
     await delay(200);
     for (let i = 21; i <= 48; i++) {
-        term.echo(`[[;#B9EDFF;]TEST_LOCATION/S Node ${i} offline...]`);
+        term.echo(`[[;#B9EDFF;]TESTERS ${i} online...]`);
         await delay(200);
     }
-    term.echo('\nConnection to loadingNext[_PROTOTYPE_EXPERIMENTAL_0001_] closed.');
+    // Crash Reported
+    term.echo('CRASH REPORTED');
+    term.set_prompt('# ');
+    await delay(400);
+    async function crash(msg) {
+        msg = `${msg} ...`;
+        term.echo(msg);
+        var id = term.last_index();
+        await delay(1500);
+        msg += 'REPORTING';
+        term.update(-1, msg);
+    }
+    await crash('ERROR.._SYSTEM_CRASH');
+    await delay(400);
+    await crash('ERROR.._SYSTEM_CRASH');
+    await delay(400);
+    term.echo('CRASH REPORTED');
+    await delay(400);
+    // Close App
+    term.echo('\nConnection to [_PROTOTYPE_EXPERIMENTAL_0001_] closed.');
+    // Verify User Control
     term.echo('\nPlease enter your email to continue:');
     term.set_prompt('# ');
     animation = false;
     dataEntryMode = true;
 }
-
-// docs: https://github.com/jcubic/jquery.terminal/wiki/Typing-Animation
