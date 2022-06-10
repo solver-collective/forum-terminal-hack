@@ -55,19 +55,24 @@ const menuCommandFunctions = {
 }
 
 async function termMenuInfo(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] INFO\n');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nINFO\n');
+    term.echo('Copyright. Loading Next');
 }
 
 async function termMenuHistory(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] HELP\n');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nHISTORY\n');
+    term.echo('It all started in 1997 - synchronize Swatches!');
 }
 
 async function termMenuMusic(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] MUSIC\n');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nMUSIC\n');
+    // Simulate a mouse click:
+    window.location.href = "http://www.w3schools.com";
 }
 
 async function termMenuOptions(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] OPTIONS\n');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nOPTIONS\n');
+    term.set_prompt('FRM-CONTROL> ').echo('Choose your own adventure:\n');
 }
 
 
