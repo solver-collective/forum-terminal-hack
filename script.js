@@ -59,7 +59,7 @@ async function termMenuInfo(term){
 }
 
 async function termMenuHistory(term){
-    term.echo('It all started in 1997 - synchronize Swatches!');
+    term.echo('It all started in 1997 - synchronize Swatches!\n');
 }
 
 async function termMenuVideo(term){
@@ -68,7 +68,7 @@ async function termMenuVideo(term){
 }
 
 async function termMenuOptions(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nOPTIONS\n');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\n');
     term.set_prompt('FRM-CONTROL> ').echo('Choose your own adventure:\n');
 }
 
