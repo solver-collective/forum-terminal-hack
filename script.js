@@ -93,7 +93,7 @@ async function termLogin(term){
     term.set_prompt('');
     await termStep(term, 'Connecting to adhoc NET 19.97.31.01:ssh ');
     term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]');
-    term.echo('Enter your email to continue:');
+    term.echo('Enter email for team access permissions:');
     animation = false;
     term.set_prompt('# ');
     dataEntryMode = true;
