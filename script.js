@@ -50,7 +50,7 @@ const terminalStateFunctions = {
 const menuCommandFunctions = {
     '1': (term) => termMenuInfo(term) ,
     '2': (term) => termMenuHistory(term),
-    '3': (term) => termMenuMusic(term),
+    '3': (term) => termMenuVideo(term),
     '4': (term) => termMenuOptions(term)
 }
 
@@ -62,7 +62,7 @@ async function termMenuHistory(term){
     term.echo('It all started in 1997 - synchronize Swatches!');
 }
 
-async function termMenuMusic(term){
+async function termMenuVideo(term){
     // Simulate a mouse click:
     window.location.href = "https://www.youtube.com/watch?v=0VdGLc7ZBXU&feature=emb_title";
 }
@@ -184,7 +184,7 @@ async function termMenu(term){
     term.clear();
     animation = true;
     term.set_prompt('');
-    term.echo('Logged in. Make a selection:\n[1] INFO\t\t[2] HISTORY\t\t\n[3] MUSIC\t\t[4] OPTIONS\t\t\n');
+    term.echo('Logged in. Make a selection:\n[1] INFO\t\t[2] HISTORY\t\t\n[3] VIDEO\t\t[4] OPTIONS\t\t\n');
     animation = false;
     term.set_prompt('# ');
     dataEntryMode = true;
