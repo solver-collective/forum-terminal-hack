@@ -55,19 +55,16 @@ const menuCommandFunctions = {
 }
 
 async function termMenuInfo(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nINFO\n');
-    term.echo('Copyright. Loading Next');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nCopyright. Loading Next\n');
 }
 
 async function termMenuHistory(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nHISTORY\n');
     term.echo('It all started in 1997 - synchronize Swatches!');
 }
 
 async function termMenuMusic(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nMUSIC\n');
     // Simulate a mouse click:
-    window.location.href = "http://www.w3schools.com";
+    window.location.href = "https://www.youtube.com/watch?v=0VdGLc7ZBXU&feature=emb_title";
 }
 
 async function termMenuOptions(term){
