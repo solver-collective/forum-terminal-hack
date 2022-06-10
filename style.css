@@ -1,5 +1,6 @@
 body {
     background: #252525;
+    font-family: monospace;
 }
 
 input:focus, textarea:focus, select:focus{
