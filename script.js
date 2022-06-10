@@ -6,7 +6,7 @@ const validateEmail = (email) => {
       );
   };
 
-
+var animation;
 var state = (localStorage.getItem('0_commands') && JSON.parse(localStorage.getItem('0_commands')).filter(command => validateEmail(command)).length > 0) ? 'menu' : 'initial_never_logged_in';
 var emailEntered = false;
 var purposeEntered = false;
@@ -42,16 +42,16 @@ const klaviyoPostProfile = async () => {
 
 
 const terminalStateFunctions = {
-    'initial_never_logged_in': async(term) => await termLogin(term),
-    'menu': async(term) => await termMenu(term),
-    'login_completed': async(term) => await termHackSequence(term)
+    'initial_never_logged_in': (term) => termLogin(term),
+    'menu': (term) => termMenu(term),
+    'login_completed': (term) => termHackSequence(term)
 }
 
 const menuCommandFunctions = {
-    '1': async(term) => await termMenuInfo(term),
-    '2': async(term) => await termMenuHistory(term),
-    '3': async(term) => await termMenuMusic(term),
-    '4': async(term) => await termMenuOptions(term)
+    '1': (term) => termMenuInfo(term) ,
+    '2': (term) => termMenuHistory(term),
+    '3': (term) => termMenuMusic(term),
+    '4': (term) => termMenuOptions(term)
 }
 
 async function termMenuInfo(term){
@@ -87,15 +87,18 @@ async function termStep(term, msg) {
 }
 
 async function termLogin(term){
+    animation = true;
     term.set_prompt('');
     await termStep(term, 'Connecting to adhoc NET 19.97.31.01:ssh ');
     term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]');
     term.echo('Enter your email to continue:');
+    animation = false;
     term.set_prompt('# ');
     dataEntryMode = true;
 }
 
 async function termHackSequence(term) {
+    animation = true;
     // App Loading
     await term.typing('enter', 50, 'loadingNext -v -sS -O 0.2.7 -rootpw="PMS396"');
     
@@ -153,7 +156,6 @@ async function termHackSequence(term) {
     }
     // Crash Reported
     term.echo('CRASH REPORTED');
-    term.set_prompt('# ');
     await delay(400);
     async function crash(msg) {
         msg = `${msg} ...`;
@@ -170,15 +172,18 @@ async function termHackSequence(term) {
     term.echo('CRASH REPORTED');
     await delay(400);
     state = 'menu';
-    await terminalStateFunctions[state](term);
+    animation = false;
+    terminalStateFunctions[state](term);
 }
 
 async function termMenu(term){
     emailEntered = true;
     purposeEntered = true;
     term.clear();
+    animation = true;
     term.set_prompt('');
     term.echo('Logged in. Make a selection:\n[1] INFO\t\t[2] HISTORY\t\t\n[3] MUSIC\t\t[4] OPTIONS\t\t\n');
+    animation = false;
     term.set_prompt('# ');
     dataEntryMode = true;
 }
@@ -208,7 +213,7 @@ var term = $('.body').terminal(async function(command) {
             term.echo('\nData comm transmission processed.');
             dataEntryMode = false;
             state = 'login_completed';
-            await terminalStateFunctions[state](term);
+            terminalStateFunctions[state](term);
         }else{
             if(menuCommandFunctions.hasOwnProperty(command)){
                 await menuCommandFunctions[command](term);
@@ -224,7 +229,7 @@ var term = $('.body').terminal(async function(command) {
 }, {
     greetings: false,
     keydown: function(e) {
-        if (!dataEntryMode) {
+        if (!dataEntryMode || animation) {
             return false;
         }
     },
