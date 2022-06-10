@@ -59,12 +59,13 @@ async function termMenuInfo(term){
 }
 
 async function termMenuHistory(term){
-    term.echo('It all started in 1997 - synchronize Swatches!\n');
+    term.echo('It all started in 199(****) - synchronize Swatches!\n');
 }
 
 async function termMenuVideo(term){
     // Simulate a mouse click:
-    window.location.href = "https://www.youtube.com/watch?v=0VdGLc7ZBXU&feature=emb_title";
+    //window.location.href = "https://www.youtube.com/watch?v=0VdGLc7ZBXU&feature=emb_title";
+    term.echo('Video coming soon.\n');
 }
 
 async function termMenuOptions(term){
@@ -119,6 +120,7 @@ async function termHackSequence(term) {
     await delay(1500);
     await term.typing('enter', 30, '...........................');
     await term.typing('enter', 30, '////\t////\t////\t////');
+    /*
     await term.typing('enter', 10, [
         '                          ',
         '                          ',
@@ -135,6 +137,7 @@ async function termHackSequence(term) {
         '                          '
         ].join('\n'));
     
+    */
     // Warning - Team Activation Sequence
     await term.typing('enter', 50, 'LOADING.........');
     term.set_prompt('');
