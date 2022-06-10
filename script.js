@@ -97,7 +97,7 @@ async function ssh_hack(term) {
         msg = `${msg}`;
         term.echo(msg);
         var id = term.last_index();
-        await delay(2000);
+        await delay(1000);
         msg += '\n...successful.';
         term.update(-1, msg);
     }
@@ -113,24 +113,24 @@ async function ssh_hack(term) {
     term.echo('');
     // App Loading
     await delay(1000);
-    await term.typing('enter', 100, 'loadingNext -v -sS -O 0.2.7 -rootpw="PMS396"');
+    await term.typing('enter', 50, 'loadingNext -v -sS -O 0.2.7 -rootpw="PMS396"');
     
     term.echo('Reset root password to "666F72756D".');
     await delay(400);
 
     // Reset Password
-    await term.typing('enter', 100, 'ssh 19.97.31.01 -l root');
+    await term.typing('enter', 50, 'ssh 19.97.31.01 -l root');
     term.set_prompt('root@19.97.31.01\'s password: ');
     await delay(1000);
     term.set_prompt('FRM-CONTROL> ').echo('root@19.97.31.01\'s password: \n');
     await delay(500);
 
     // Experimental Test Program Loader
-    await term.typing('enter', 100, '[EXPERIMENTAL_TEST_PROGRAM_]');
+    await term.typing('enter', 50, '[EXPERIMENTAL_TEST_PROGRAM_]');
     await delay(1500);
-    await term.typing('enter', 60, '...........................');
-    await term.typing('enter', 60, '////\t////\t////\t////');
-    await term.typing('enter', 30, [
+    await term.typing('enter', 30, '...........................');
+    await term.typing('enter', 30, '////\t////\t////\t////');
+    await term.typing('enter', 10, [
         '                          ',
         '                          ',
         '[;#e0df00;]         @#(((######%@    ',
@@ -147,7 +147,7 @@ async function ssh_hack(term) {
         ].join('\n'));
     
     // Warning - Team Activation Sequence
-    await term.typing('enter', 100, 'LOADING.........');
+    await term.typing('enter', 50, 'LOADING.........');
     term.set_prompt('');
     await delay(800);
     term.echo('[LOADING_NEXT]');
