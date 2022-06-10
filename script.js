@@ -1,4 +1,13 @@
-var animation;
+const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
+
+var state = (localStorage.getItem('0_commands') && JSON.parse(localStorage.getItem('0_commands')).filter(command => validateEmail(command)).length > 0) ? 'menu' : 'initial_never_logged_in';
 var emailEntered = false;
 var purposeEntered = false;
 var dataEntryMode = false;
@@ -7,13 +16,6 @@ var purpose;
 var date = new Date();
 var testers = Math.floor(Math.random() * 30) + 1;
 
-const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
 
 const klaviyoPostProfile = async () => {
     try{
@@ -38,50 +40,36 @@ const klaviyoPostProfile = async () => {
     }
 }
 
-var term = $('.body').terminal(async function(command) {
-    if(!command && !dataEntryMode){
-        ssh_hack(this);
-    }
-    if(command && dataEntryMode){
-        if(!emailEntered){
-            if(validateEmail(command.trim())){
-                email = command.trim();
-                emailEntered = true;
-                term.echo('\nWhat is your purpose here?');
-                term.set_prompt('# ');
-            }else{
-                term.echo('\nInvalid email entered. Enter valid email address:');
-                term.set_prompt('# ');
-            }
-        }else if(!purposeEntered){
-            purpose = command;
-            purposeEntered = true;
-            // after last attribute is entered, submit data to Klaviyo API
-            // ensure function is edited to include all fields to add to Klaviyo profile
-            await klaviyoPostProfile();
-            term.echo('\nData comm transmission processed.');
-            await delay(400);
-            term.echo('Verify comm link to acquire further access.');
-            dataEntryMode = false;
-            term.freeze(true);
-            term.set_prompt('');
-        }
-    }
-}, {
-    greetings: false,
-    keydown: function(e) {
-        if (animation || !dataEntryMode) {
-            return false;
-        }
-    },
-    prompt: '# ',
-    // obBlur will prevent the keyboard on mobile from popup because it will keep the terminal in focus and on mobile the terminal has to be disabled on init so you can activate it with a finger tap 
-    //onBlur: function() {
-        //return false;
-    //}
-});
 
-ssh_hack(term);
+const terminalStateFunctions = {
+    'initial_never_logged_in': async(term) => await termLogin(term),
+    'menu': async(term) => await termMenu(term),
+    'login_completed': async(term) => await termHackSequence(term)
+}
+
+const menuCommandFunctions = {
+    '1': async(term) => await termMenuInfo(term),
+    '2': async(term) => await termMenuHistory(term),
+    '3': async(term) => await termMenuMusic(term),
+    '4': async(term) => await termMenuOptions(term)
+}
+
+async function termMenuInfo(term){
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] INFO\n');
+}
+
+async function termMenuHistory(term){
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] HELP\n');
+}
+
+async function termMenuMusic(term){
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] MUSIC\n');
+}
+
+async function termMenuOptions(term){
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_] OPTIONS\n');
+}
+
 
 function delay(timeout) {
     return new Promise(resolve => {
@@ -89,30 +77,26 @@ function delay(timeout) {
     });
 }
 
-async function ssh_hack(term) {
-    animation = true;
-    // Application Init - Boot Sequence
-    term.set_prompt('');
-    async function step(msg) {
-        msg = `${msg}`;
-        term.echo(msg);
-        var id = term.last_index();
-        await delay(1000);
-        msg += '\n...successful.';
-        term.update(-1, msg);
-    }
-    await step('Connecting to adhoc NET 19.97.31.01:ssh ');
-    await step('Log: ' + date.toLocaleString());
-    await step('Server side exploit SSHv1 4****');
-    await delay(1500);
-    term.echo([
-        '[_PROTOTYPE_EXPERIMENTAL_0001_]',
-        '',
-        '[L1550]\t\t[R800]\t\t\t[WP294.92]\n[NP251]\t\t[N/TL1955]\t\t[LAUNCH_2022/2023]'
-    ].join('\n'));
-    term.echo('');
-    // App Loading
+async function termStep(term, msg) {
+    msg = `${msg}`;
+    term.echo(msg);
+    var id = term.last_index();
     await delay(1000);
+    msg += '\n...successful.';
+    term.update(-1, msg);
+}
+
+async function termLogin(term){
+    term.set_prompt('');
+    await termStep(term, 'Connecting to adhoc NET 19.97.31.01:ssh ');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]');
+    term.echo('Enter your email to continue:');
+    term.set_prompt('# ');
+    dataEntryMode = true;
+}
+
+async function termHackSequence(term) {
+    // App Loading
     await term.typing('enter', 50, 'loadingNext -v -sS -O 0.2.7 -rootpw="PMS396"');
     
     term.echo('Reset root password to "666F72756D".');
@@ -185,11 +169,70 @@ async function ssh_hack(term) {
     await delay(400);
     term.echo('CRASH REPORTED');
     await delay(400);
-    // Close App
-    term.echo('\nConnection to [_PROTOTYPE_EXPERIMENTAL_0001_] closed.');
-    // Verify User Control
-    term.echo('\nEnter your email to continue:');
+    state = 'menu';
+    await terminalStateFunctions[state](term);
+}
+
+async function termMenu(term){
+    emailEntered = true;
+    purposeEntered = true;
+    term.clear();
+    term.set_prompt('');
+    term.echo('Logged in. Make a selection:\n[1] INFO\t\t[2] HISTORY\t\t\n[3] MUSIC\t\t[4] OPTIONS\t\t\n');
     term.set_prompt('# ');
-    animation = false;
     dataEntryMode = true;
 }
+
+
+var term = $('.body').terminal(async function(command) {
+    if(!command && !dataEntryMode){
+        await terminalStateFunctions[state](term);
+    }
+    if(command && dataEntryMode){
+        if(!emailEntered){
+            if(validateEmail(command.trim())){
+                email = command.trim();
+                emailEntered = true;
+                term.echo('\nWhat is your purpose here?');
+                term.set_prompt('# ');
+            }else{
+                term.echo('\nInvalid email entered. Enter valid email address:');
+                term.set_prompt('# ');
+            }
+        }else if(!purposeEntered){
+            purpose = command;
+            purposeEntered = true;
+            // after last attribute is entered, submit data to Klaviyo API
+            // ensure function is edited to include all fields to add to Klaviyo profile
+            await klaviyoPostProfile();
+            term.echo('\nData comm transmission processed.');
+            dataEntryMode = false;
+            state = 'login_completed';
+            await terminalStateFunctions[state](term);
+        }else{
+            if(menuCommandFunctions.hasOwnProperty(command)){
+                await menuCommandFunctions[command](term);
+            }else{
+                dataEntryMode = false;
+                term.echo('\nInvalid selection, please try again ');
+                await delay(1000);
+                state = 'menu';
+                await terminalStateFunctions[state](term);
+            }
+        }
+    }
+}, {
+    greetings: false,
+    keydown: function(e) {
+        if (!dataEntryMode) {
+            return false;
+        }
+    },
+    prompt: '# ',
+    // obBlur will prevent the keyboard on mobile from popup because it will keep the terminal in focus and on mobile the terminal has to be disabled on init so you can activate it with a finger tap 
+    //onBlur: function() {
+        //return false;
+    //}
+});
+
+terminalStateFunctions[state](term);
