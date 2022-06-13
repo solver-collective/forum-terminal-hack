@@ -51,7 +51,8 @@ const menuCommandFunctions = {
     '1': (term) => termMenuInfo(term) ,
     '2': (term) => termMenuHistory(term),
     '3': (term) => termMenuVideo(term),
-    '4': (term) => termMenuOptions(term)
+    '4': (term) => termMenuOptions(term),
+    '5': (term) => termHackSequence(term)
 }
 
 async function termMenuInfo(term){
@@ -187,7 +188,7 @@ async function termMenu(term){
     term.clear();
     animation = true;
     term.set_prompt('');
-    term.echo('Logged in. Make a selection:\n[1] INFO\t\t[2] HISTORY\t\t\n[3] VIDEO\t\t[4] OPTIONS\t\t\n');
+    term.echo('Logged in. Make a selection:\n[1] INFO\t\t[2] HISTORY\t\t[3] VIDEO\t\t\n[4] OPTIONS\t\t[5] REBOOT\t\t\n');
     animation = false;
     term.set_prompt('# ');
     dataEntryMode = true;
