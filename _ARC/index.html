@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Loading</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Code Pro">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css'><link rel="stylesheet" href="./style.css">
+
+<style type="text/css" media="screen">
+  html, body {
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    line-height: 1em;
+    font-family: 'Source Code Pro', monospace;
+  }
+  pre {
+    position: absolute;
+    margin:0;
+    padding:0;
+    left:0;
+    top:0;
+    width:100vw;
+    height:100vh;
+    font-family: inherit;
+  }
+</style>
+
+</head>
+<body>
+
+  <pre></pre>
+	<script type="module">
+		import { run } from '/lib/play/run.js'
+		import * as program from '/lib/play/programs/basics/time_milliseconds.js'
+		run(program, { element : document.querySelector('pre') }).then(function(e){
+			console.log(e)
+		}).catch(function(e) {
+			console.warn(e.message)
+			console.log(e.error)
+		})
+	</script>
+<!-- partial:index.partial.html -->
+<div class="terminal-dialog">
+    <header>
+        <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+        </ul>
+        <span class="title">Loading</span>
+    </header>
+    <div class="body"></div>
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/jquery'></script>
+<script src='https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

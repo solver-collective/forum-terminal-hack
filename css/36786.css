@@ -1,0 +1,121 @@
+@import "fonts.css"; /* Fonts */
+@import "normalize.css"; /* Normalize Minified */
+@import "term.css"; /* Term Minified */
+
+
+html, body {
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    line-height: 1em;
+    font-family: 'Source Code Pro', monospace;
+  }
+
+body {
+    background: #252525;
+    font-family: monospace;
+}
+
+/* ASCII Playground */
+pre {
+    position: absolute;
+    margin:0;
+    padding:0;
+    left:0;
+    top:0;
+    width:100vw;
+    height:100vh;
+    font-family: inherit;
+  }
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+.terminal-dialog {
+    --size: 1.4;
+    --background: transparent;
+    --color: #c2d500; /* RGB 194 ,213 ,0 */
+    border: 2px solid var(--color);
+    background: var(--background);
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    min-height: 100px;
+    min-width: 250px;
+    max-width: 600px;
+    max-height: calc(100vh - 40px);
+    z-index: 100;
+    resize: both;
+    overflow: auto;
+}
+@media only screen and (max-width: 600px) {
+    .terminal-dialog {
+        --size: 1;
+        height: calc(100vh - 140px);
+        max-height: calc(100vh - 140px);
+    }
+}
+.terminal-dialog .body {
+    width: 100%;
+    height: calc(100% - 28px);
+}
+
+.terminal-dialog {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(10%, -50%);
+}
+@media only screen and (max-width: 600px) {
+    .terminal-dialog {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.terminal-dialog header .title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.terminal-dialog header .title {
+    margin-top: -2px;
+    background: var(--color);
+    padding: 1px 10px;
+}
+.terminal-dialog header {
+    background: var(--color);
+    position: relative;
+}
+.terminal-dialog header::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 55px;
+    top: 5px;
+    right: 10px;
+    width: calc(100% - 55px - 5px);
+    height: 15px;
+    background: var(--color);
+}
+.terminal-dialog header .title::before {
+    content: "[ ";
+}
+.terminal-dialog header .title::after {
+    content: " ]";
+}
+.terminal-dialog header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+}
+.terminal-dialog header li {
+    display: inline-block;
+    margin: 3px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--background);
+}
