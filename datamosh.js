@@ -66,7 +66,8 @@ const menuCommandFunctions = {
     '4': (term) => termMenuVideo(term),
     '5': (term) => termMenuVideo(term),
     '6': (term) => termMenuVideo(term),
-    '7': (term) => termMenuVideo(term)
+    '7': (term) => termMenuVideo(term),
+    '96': (term) => termMenuWallpaper(term)
 }
 
 async function termMenuInfo(term){
@@ -75,6 +76,12 @@ async function termMenuInfo(term){
 
 async function termMenuReboot(term){
     termHackSequence(term) // Reboot
+}
+
+async function termMenuWallpaper(term){
+    // Wallpaper of Chaos
+    new p5(s, 'wallpaper-top');
+    new p5(t, 'wallpaper-bottom');
 }
 
 async function termMenuVideo(term){
@@ -182,6 +189,11 @@ async function termHackSequence(term) {
     await delay(400);
     term.echo('CRASH REPORTED');
     await delay(400);
+
+    // Wallpaper of Chaos
+    new p5(s, 'wallpaper-top');
+    new p5(t, 'wallpaper-bottom');
+
     state = 'menu';
     animation = false;
     terminalStateFunctions[state](term);
