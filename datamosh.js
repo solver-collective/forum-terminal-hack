@@ -78,7 +78,7 @@ async function termMenuReboot(term){
 }
 
 async function termMenuVideo(term){
-    term.echo('<video poster="./i/video-poster__720x1280.gif" muted="" playsinline="" style="width: 100%;"><source src="./i/remnant-01.MOV" type="video/mp4">Your browser does not support the video tag.</video>', {raw: true});
+    term.echo('<video poster="./i/video-poster__720x1280.gif" playsinline="" style="width: 100%;"><source src="./i/remnant-01.MOV" type="video/mp4">Your browser does not support the video tag.</video>', {raw: true});
     let video = document.getElementsByTagName('video')[0];
     console.log(video);
 
