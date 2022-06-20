@@ -1,6 +1,9 @@
 const timeOut = 20000,
       terminalBody = document.querySelector('.terminal-dialog');
 
+
+
+
 // Sketch - Wallpaper Background
 let dataMoshPit_bkg = function( p ) { // p could be any variable name
   let x = 100; 
@@ -127,7 +130,7 @@ let dataMoshPit_2 = function(p) {
       p.image(glicth, 0, p.height / 2 + p.random(-10,10), glicth.width / 2, glicth.height / 2);
     }
 
-    console.log(p.frameCount);
+    //console.log(p.frameCount);
   }
 };
 
@@ -270,8 +273,14 @@ let dataMoshPit_static = function(p) {
     }
 
     // Data Mosh
+
+    console.log(p.width);
     if (p.frameCount > 3) {
-      p.image(moshy, p.width - moshy.width / 2, 0, moshy.width / 2, moshy.height * 10);
+      let rightPos = p.width - 10;
+      if (p.width > 700) {
+        rightPos = moshy.width / 2
+      }
+      p.image(moshy, rightPos, 0, moshy.width / 2, moshy.height * 10);
     }
         
     // Back To the Future
