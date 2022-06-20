@@ -2,6 +2,7 @@ console.log('%c SOLVER COLLECTIVE ', 'background: #c2d500; color: #000; padding:
 
 import { run } from '/lib/ascii/run.js'
 import * as program from '/lib/36786.js'
+
 run(program, { element : document.querySelector('#ascii') }).then(function(e){
     //console.log(e)
 }).catch(function(e) {
@@ -79,9 +80,28 @@ async function termMenuReboot(term){
 }
 
 async function termMenuWallpaper(term){
+    // Remove the ASCII
+    //document.querySelector('#ascii').innerHTML = '';
+
+    window.location.href = "./system-crash.html";
+
     // Wallpaper of Chaos
-    new p5(s, 'wallpaper-top');
-    new p5(t, 'wallpaper-bottom');
+    wallpaperBootSequence(function callFunction() {
+        //console.log('Done with the woods');
+        //document.querySelector('#ascii').remove();
+    });
+
+    
+    
+}
+
+function wallpaperBootSequence(callback) {
+    new p5(dataMoshPit_bkg, 'wallpaper');
+    new p5(dataMoshPit_1, 'dataMoshPit_1');
+    new p5(dataMoshPit_2, 'dataMoshPit_2');
+    new p5(dataMoshPit_3, 'dataMoshPit_3');
+
+    callback();
 }
 
 async function termMenuVideo(term){
@@ -191,8 +211,7 @@ async function termHackSequence(term) {
     await delay(400);
 
     // Wallpaper of Chaos
-    new p5(s, 'wallpaper-top');
-    new p5(t, 'wallpaper-bottom');
+    window.location.href = "./system-crash.html";
 
     state = 'menu';
     animation = false;
@@ -206,7 +225,7 @@ async function termMenu(term){
     animation = true;
     term.set_prompt('');
     term.set_prompt('FRM-CONTROL> ')
-    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t\n[3] Remnant 01\t[4] Remnant 02\t[5] Remnant 03\t\t\n[6] Remnant 04\t[7] Remnant 05\n');
+    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t\n[3] Remnant 01\t\n');
     animation = false;
     term.set_prompt('FRM-CONTROL> ')
     dataEntryMode = true;

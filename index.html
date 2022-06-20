@@ -7,22 +7,30 @@
   <link rel="stylesheet" href="css/36786.css">
 
   <style>
-    #wallpaper-top {
+    #dataMoshPit_bkg {
       position: absolute;
-      z-index: 100;
+      z-index: 1;
     }
 
-    #wallpaper-bottom {
+    #dataMoshPit_1 {
+      z-index: 2;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    #dataMoshPit_2, #dataMoshPit_3 {
       z-index: 100;
       position: absolute;
-      bottom: 0;
+      top: 20px;
+      left: 20px;
     }
   </style>
 
 </head>
 <body>
-  <div id="wallpaper-top">
-  </div>
+  <div id="dataMoshPit_bkg"></div>
+  <div id="dataMoshPit_1"></div>
 
   <pre id="ascii"></pre>
   <div class="terminal-dialog">
@@ -35,10 +43,11 @@
       <div class="body"></div>
   </div>
 
-  <div id="wallpaper-bottom">
-  </div>
+  <div id="dataMoshPit_2"></div>
+  <div id="dataMoshPit_3"></div>
 
   <script  src="lib/req.min.js"></script>
+  <script  src="lib/play/p5.play.js"></script>
   <script src="./sketch.js"></script>
   <script  type="module" src="./datamosh.js"></script>
 

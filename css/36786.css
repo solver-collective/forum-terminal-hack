@@ -63,7 +63,7 @@ input:focus, textarea:focus, select:focus{
     position: absolute;
     left: 0;
     top: 50%;
-    transform: translate(10%, -50%);
+    transform: translate(20px, -50%);
 }
 @media only screen and (max-width: 600px) {
     .terminal-dialog {
