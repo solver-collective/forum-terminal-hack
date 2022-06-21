@@ -251,7 +251,7 @@ let dataMoshPit_xx = function(p) {
 
 // Sketch - Static Wallpaper Images
 let dataMoshPit_static = function(p) {
-  let doom, bestbuy, statueMosh, runners, easyInstall, messwith, moshy, b2tf, faceColorized, loadingNextLogo, y = -2;
+  let doom, bestbuy, statueMosh, runners, easyInstall, messwith, moshy, b2tf, faceColorized, loadingNextLogo, clickBait, y = -2;
   // Preload
   p.preload = function() {
     doom = p.loadImage('i/3588775-middle-trans.png'); // Load the image
@@ -264,6 +264,7 @@ let dataMoshPit_static = function(p) {
     b2tf = p.loadImage('i/6IjF.gif');
     faceColorized = p.loadImage('i/face-colorized.jpg');
     loadingNextLogo = p.loadImage('i/loading-next.png');
+    clickBait = p.loadImage('i/click-bait.jpg');
   }
 
   // Setup = Run Once
@@ -326,6 +327,11 @@ let dataMoshPit_static = function(p) {
     // Doom Character
     if (p.frameCount > 3) {
       p.image(doom, p.width > 700 ? p.width - p.width / 2 : 100, p.height / 2 - 50, doom.width / 3, doom.height / 3);
+    }
+
+    // Click Bait
+    if (p.frameCount > 3) {
+      p.image(clickBait, p.width > 700 ? p.width / 2 - clickBait.width / 2 : 10, p.height / 2 - clickBait.height / 2, clickBait.width / 3, clickBait.height / 3);
     }
   }
 
