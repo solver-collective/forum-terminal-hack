@@ -82,6 +82,7 @@ async function termMenuWallpaper(term){
 }
 
 async function termMenuVideo(term, number){
+    term.clear();
     term.echo('<video poster="./i/video-poster__720x1280.gif" playsinline="" style="width: 100%;"><source src="./i/vids/remnant-' + number + '.mp4" type="video/mp4">Your browser does not support the video tag.</video>', {raw: true});
     let video = document.getElementsByTagName('video')[0];
     console.log(video);
