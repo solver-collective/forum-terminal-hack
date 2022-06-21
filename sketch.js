@@ -326,7 +326,7 @@ let dataMoshPit_static = function(p) {
 
     // Doom Character
     if (p.frameCount > 3) {
-      p.image(doom, p.width > 700 ? p.width - p.width / 2 : 100, p.height / 2 - 50, doom.width / 3, doom.height / 3);
+      p.image(doom, p.width > 700 ? p.width - p.width / 2 : 100, p.height / 2 - 50, doom.width / 4, doom.height / 4);
     }
 
     // Click Bait
