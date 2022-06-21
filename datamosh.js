@@ -64,7 +64,9 @@ const menuCommandFunctions = {
     '1': (term) => termMenuInfo(term) ,
     '2': (term) => termMenuReboot(term),
     '3': (term) => termMenuWallpaper(term),
-    '4': (term) => termMenuVideo(term)
+    '4': (term) => termMenuVideo(term, '01'),
+    '5': (term) => termMenuVideo(term, '02'),
+    '6': (term) => termMenuVideo(term, '03'),
 }
 
 async function termMenuInfo(term){
@@ -79,8 +81,8 @@ async function termMenuWallpaper(term){
     window.location.href = "./index.html";
 }
 
-async function termMenuVideo(term){
-    term.echo('<video poster="./i/video-poster__720x1280.gif" playsinline="" style="width: 100%;"><source src="./i/remnant-01.MOV" type="video/mp4">Your browser does not support the video tag.</video>', {raw: true});
+async function termMenuVideo(term, number){
+    term.echo('<video poster="./i/video-poster__720x1280.gif" playsinline="" style="width: 100%;"><source src="./i/vids/remnant-' + number + '.mp4" type="video/mp4">Your browser does not support the video tag.</video>', {raw: true});
     let video = document.getElementsByTagName('video')[0];
     console.log(video);
 
@@ -191,7 +193,7 @@ async function termMenu(term){
     animation = true;
     term.set_prompt('');
     term.set_prompt('FRM-CONTROL> ')
-    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t[3] Home\t\t\n[4] Remnant 01\t\n');
+    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t[3] Home\t\t\n[4] Remnant 01\n[5] Remnant 02\n[6] Remnant 03\n');
     animation = false;
     term.set_prompt('FRM-CONTROL> ')
     dataEntryMode = true;
