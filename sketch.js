@@ -1,9 +1,6 @@
 const timeOut = 20000,
       terminalBody = document.querySelector('.terminal-dialog');
 
-
-
-
 // Sketch - Wallpaper Background
 let dataMoshPit_bkg = function( p ) { // p could be any variable name
   let x = 100; 
@@ -47,6 +44,11 @@ let dataMoshPit_bkg = function( p ) { // p could be any variable name
       
 
   };
+
+  // Resizer
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  }
 };
 
 // Sketch - Melt the Terminal Frame
@@ -54,13 +56,11 @@ let dataMoshPit_1 = function(p) {
   let x = 0; 
   let y = 0; 
   let leap = 8;
-  let alpha = 7;
   
-
-  //console.log(terminalBody);
   p.setup = function() {
+    p.frameRate(10);
+
     p.createCanvas(terminalBody.offsetWidth, terminalBody.offsetHeight);
-  
     // Destroy Sketch after set Time
     setTimeout(function () {
       p.remove();
@@ -70,6 +70,7 @@ let dataMoshPit_1 = function(p) {
 
   p.draw = function() {
     
+    //console.log(p.frameCount);
     p.noStroke();
     
     x += leap; 
@@ -78,18 +79,18 @@ let dataMoshPit_1 = function(p) {
     }
     if (p.frameCount > 20) {
 
-      p.rect(x,p.random(0,10),2,p.random(0,terminalBody.offsetHeight));
-      alpha++;
-      if(alpha > 9){
-        alpha = 7; 
-      }
-      //alphaColor = alpha / 10;
-      //console.log(alpha);
+      p.rect(x,terminalBody.getBoundingClientRect().top, 2, p.random(0,terminalBody.offsetHeight));
       
       p.fill(p.color('rgb(194, 213, 0)'));
-      p.rect(x - p.random(-50,100),p.random(0,10),10,p.random(0,terminalBody.offsetHeight));
+      p.rect(x - p.random(-50,100), terminalBody.getBoundingClientRect().top, 10, p.random(0,terminalBody.offsetHeight));
     }
   };
+
+  // Resizer
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  }
+
 }
 
 
@@ -121,16 +122,18 @@ let dataMoshPit_2 = function(p) {
   // Draw = Run Loop Forever
   p.draw = function() {
 
-    // Add some Flickering
-    if (p.frameCount > 30) {
-      p.image(glicth, p.width - glicth.width / 2, 0);
-    }
+
     if (p.frameCount > 60) {
       // Displays the image at point (0, height/2) at half size
-      p.image(glicth, 0, p.height / 2 + p.random(-10,10), glicth.width / 2, glicth.height / 2);
+      p.image(glicth, 2 - (glicth.width / 2), p.height / 2 + p.random(-10,10), glicth.width / 2, glicth.height / 2);
     }
 
     //console.log(p.frameCount);
+  }
+
+  // Resizer
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
   }
 };
 
@@ -140,8 +143,6 @@ let dataMoshPit_3 = function(p) {
   let bug1; // Declare objects
   let bug2;
 
-  p.frameRate(3);
-
   // Preload
   p.preload = function() {
     img = p.loadImage('i/floating-window_1.png'); // Load the image
@@ -149,6 +150,9 @@ let dataMoshPit_3 = function(p) {
 
   // Setup = Run Once
   p.setup = function() {
+
+    p.frameRate(3);
+
     canvas = p.createCanvas(p.windowWidth, p.windowHeight);
 
     // Create Bug objects
@@ -165,6 +169,8 @@ let dataMoshPit_3 = function(p) {
   // Draw = Run Loop Forever
   p.draw = function() {
 
+    p.frameRate(p.random(1,6));
+
     // Animation: Bug
     if (p.frameCount > 2) {
       bug1.move(p);
@@ -174,6 +180,11 @@ let dataMoshPit_3 = function(p) {
       bug2.move(p);
       bug2.display(p);
     }
+  }
+
+  // Resizer
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
   }
 }
 
@@ -201,6 +212,11 @@ let dataMoshPit_4 = function(p) {
       drawTarget(p, p.width * 0.75, p.height * 0.3, 120, 6);
     }, 15000);
   }
+
+  // Resizer
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  }
 }
 
 /* 
@@ -226,21 +242,27 @@ let dataMoshPit_xx = function(p) {
 
   // Draw = Run Loop Forever
   p.draw = function() {}
+
+  // Resizer
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  }
 }
 
 // Sketch - Static Wallpaper Images
 let dataMoshPit_static = function(p) {
-  let doom, bestbuy, luigi, runners, hammer, messwith, moshy, b2tf;
+  let doom, bestbuy, statueMosh, runners, easyInstall, messwith, moshy, b2tf, faceColorized, y = -2;
   // Preload
   p.preload = function() {
     doom = p.loadImage('i/3588775-middle-trans.png'); // Load the image
     bestbuy = p.loadImage('i/bestbuy-logo.png');
-    luigi = p.loadImage('i/super-mario-64-luigi-technology-fictional-character.png');
+    statueMosh = p.loadImage('i/statue-mosh.gif');
     runners = p.loadImage('i/retro-synthwave_GIF-00-2.gif');
-    hammer = p.loadImage('i/hammer-trasp.gif');
+    easyInstall = p.loadImage('i/EZG5G.gif');
     messwith = p.loadImage('i/0_59qwHO8-itP2tlra.gif');
     moshy = p.loadImage('i/tumblr_ndf25gbavp1qf3orno1_500.gif');
     b2tf = p.loadImage('i/6IjF.gif');
+    faceColorized = p.loadImage('i/face-colorized.jpg');
   }
 
   // Setup = Run Once
@@ -250,9 +272,10 @@ let dataMoshPit_static = function(p) {
 
   // Draw = Run Loop Forever
   p.draw = function() {
-    // Doom Character
+    // Data Mosh
+    //console.log(p.width);
     if (p.frameCount > 3) {
-      p.image(doom, p.width - p.width / 3, p.height / 2 - 50, doom.width / 3, doom.height / 3);
+      p.image(moshy, p.width > 700 ? p.width -  moshy.width / 2 : p.width - 10, 0, moshy.width / 2, moshy.height * 10);
     }
 
     // Best Buy
@@ -260,9 +283,15 @@ let dataMoshPit_static = function(p) {
       p.image(bestbuy, terminalBody.offsetWidth, 50, bestbuy.width / 2, bestbuy.height / 2);
     }
 
-    // Luigi
+    // Face Colorized
+
+    if (p.frameCount > 12) {
+      p.image(faceColorized, p.width > 700 ? -2 : -50, p.frameCount % 10 == 0 ? y++ : y, p.width > 700 ? faceColorized.width * 0.75 : faceColorized.width * 0.5, p.width > 700 ? faceColorized.height * 0.75 : faceColorized.height * 0.5);
+    }
+
+    // Statue Mosh
     if (p.frameCount > 15) {
-      p.image(luigi, p.width - p.width , p.height / 2 + p.height / 8, luigi.width / 4, luigi.height / 4);
+      p.image(statueMosh, p.width - p.width , p.height / 2 + p.height / 8, statueMosh.width / 4, statueMosh.height / 4);
     }
 
     // Runners
@@ -270,31 +299,34 @@ let dataMoshPit_static = function(p) {
       p.image(runners, runners.width * 0.5 + 40, p.height - runners.height * 0.6, runners.width * 0.5, runners.height * 0.5);
     }
 
-    // Hammer
+    // easyInstall
     if (p.frameCount > 10) {
-      p.image(hammer, terminalBody.offsetWidth, hammer.height * 0.4, hammer.width, hammer.height);
+      p.image(easyInstall, p.width > 700 ? terminalBody.offsetWidth : easyInstall.width / 2, easyInstall.height * 0.4, p.width > 700 ? easyInstall.width : easyInstall.width / 2, p.width > 700 ? easyInstall.height : easyInstall.height / 2);
     }
 
     // Mess With The Best
     if (p.frameCount > 10) {
       p.image(messwith, p.width - p.width / 2 + 85, p.height - messwith.height * 0.65, messwith.width * 0.75, messwith.height * 0.75);
     }
-
-    // Data Mosh
-
-    console.log(p.width);
-    if (p.frameCount > 3) {
-      let rightPos = p.width - 10;
-      if (p.width > 700) {
-        rightPos = moshy.width / 2
-      }
-      p.image(moshy, rightPos, 0, moshy.width / 2, moshy.height * 10);
-    }
         
     // Back To the Future
     if (p.frameCount > 8) {
       p.image(b2tf, 900, -20, b2tf.width / 2, b2tf.height / 2);
     }
+
+    // Doom Character
+    if (p.frameCount > 3) {
+      p.image(doom, p.width > 700 ? p.width - p.width / 2 : 100, p.height / 2 - 50, doom.width / 3, doom.height / 3);
+    }
+  }
+
+  // Resizer
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  }
+
+  p.touchStarted = function () {
+    window.location.href = "./system-terminal.html";
   }
 }
 
@@ -315,9 +347,9 @@ function drawTarget(p, xloc, yloc, size, num) {
 // FloatingWindow class
 class FloatingWindow {
   constructor(p, speed) {
-    this.x = p.random(p.width);
-    this.y = p.random(p.height);
-    this.sizeLength = p.random(10, 80);
+    this.x = p.random(p.width / 2);
+    this.y = p.random(p.height / 2);
+    this.sizeLength = p.width > 700 ? p.random(80, 220) : p.random(40, 150);
     this.speed = speed;
   }
 

@@ -22,7 +22,7 @@ const validateEmail = (email) => {
 var animation;
 var state = (localStorage.getItem('0_commands') && JSON.parse(localStorage.getItem('0_commands')).filter(command => validateEmail(command)).length > 0) ? 'menu' : 'initial_never_logged_in';
 var emailEntered = false;
-var purposeEntered = false;
+//var purposeEntered = false;
 var dataEntryMode = false;
 var email;
 var purpose;
@@ -63,16 +63,12 @@ const terminalStateFunctions = {
 const menuCommandFunctions = {
     '1': (term) => termMenuInfo(term) ,
     '2': (term) => termMenuReboot(term),
-    '3': (term) => termMenuVideo(term),
-    '4': (term) => termMenuVideo(term),
-    '5': (term) => termMenuVideo(term),
-    '6': (term) => termMenuVideo(term),
-    '7': (term) => termMenuVideo(term),
-    '96': (term) => termMenuWallpaper(term)
+    '3': (term) => termMenuWallpaper(term),
+    '4': (term) => termMenuVideo(term)
 }
 
 async function termMenuInfo(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\nL1550, R800, WP294.92, NP251, N/TL195\n');
+    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\n\nL1550, R800, WP294.92, NP251, N/TL195\n\nLive experiment underway 45.3311° N, 121.7110° W\n\nPlease return for regular program updates\n');
 }
 
 async function termMenuReboot(term){
@@ -80,28 +76,7 @@ async function termMenuReboot(term){
 }
 
 async function termMenuWallpaper(term){
-    // Remove the ASCII
-    //document.querySelector('#ascii').innerHTML = '';
-
-    window.location.href = "./system-crash.html";
-
-    // Wallpaper of Chaos
-    wallpaperBootSequence(function callFunction() {
-        //console.log('Done with the woods');
-        //document.querySelector('#ascii').remove();
-    });
-
-    
-    
-}
-
-function wallpaperBootSequence(callback) {
-    new p5(dataMoshPit_bkg, 'wallpaper');
-    new p5(dataMoshPit_1, 'dataMoshPit_1');
-    new p5(dataMoshPit_2, 'dataMoshPit_2');
-    new p5(dataMoshPit_3, 'dataMoshPit_3');
-
-    callback();
+    window.location.href = "./index.html";
 }
 
 async function termMenuVideo(term){
@@ -117,12 +92,6 @@ async function termMenuVideo(term){
     };
     term.echo('\n');
 }
-
-async function termMenuOptions(term){
-    term.echo('[_PROTOTYPE_EXPERIMENTAL_0001_]\n');
-    term.set_prompt('FRM-CONTROL> ').echo('Choose your own adventure:\n');
-}
-
 
 function delay(timeout) {
     return new Promise(resolve => {
@@ -153,44 +122,44 @@ async function termLogin(term){
 async function termHackSequence(term) {
     animation = true;
     // App Loading
-    await term.typing('enter', 50, 'loadingNext -v -sS -O 0.2.7 -rootpw="PMS396"');
+    await term.typing('enter', 20, 'loadingNext -v -sS -O 0.2.7 -rootpw="PMS396"');
     
     term.echo('Reset root password to "666F72756D".');
     await delay(400);
 
     // Reset Password
-    await term.typing('enter', 50, 'ssh 19.97.31.01 -l root');
+    await term.typing('enter', 20, 'ssh 19.97.31.01 -l root');
     term.set_prompt('root@19.97.31.01\'s password: ');
     await delay(1000);
     term.set_prompt('FRM-CONTROL> ').echo('root@19.97.31.01\'s password: \n');
     await delay(500);
 
     // Experimental Test Program Loader
-    await term.typing('enter', 50, '[EXPERIMENTAL_TEST_PROGRAM_]');
+    await term.typing('enter', 20, '[EXPERIMENTAL_TEST_PROGRAM_]');
     await delay(1500);
-    await term.typing('enter', 30, '...........................');
-    await term.typing('enter', 30, '////\t////\t////\t////');
+    await term.typing('enter', 10, '...........................');
+    await term.typing('enter', 10, '////\t////\t////\t////');
 
     // Warning - Team Activation Sequence
-    await term.typing('enter', 50, 'LOADING.........');
+    await term.typing('enter', 20, 'LOADING.........');
     term.set_prompt('');
-    await delay(800);
+    await delay(500);
     term.echo('[LOADING_NEXT]');
-    await delay(800);
+    await delay(500);
     term.echo('[TESTERS_- - -]');
-    await delay(800);
+    await delay(500);
     term.echo('[TEAM_- - - ]\n\n');
-    await delay(2000);
+    await delay(800);
     term.echo('[[;#B9EDFF;]Warning: Activating TEST_LOCATION/S]');
     term.set_prompt('');
     term.echo('         [[;#B9EDFF;]ARE YOU SURE? (y/n)]');
-    await delay(2000);
+    await delay(800);
     term.update(-1, '         [[;#B9EDFF;]ARE YOU SURE? (y/n)] y');
     term.echo('');
     await delay(200);
     for (let i = 1; i <= testers; i++) {
         term.echo(`[[;#B9EDFF;]TEST_LOCATION ${i} online...]`);
-        await delay(200);
+        await delay(100);
     }
     // Crash Reported
     term.echo('CRASH REPORTED');
@@ -204,14 +173,11 @@ async function termHackSequence(term) {
         term.update(-1, msg);
     }
     await crash('ERROR.._SYSTEM_CRASH');
-    await delay(400);
+    await delay(100);
     await crash('ERROR.._SYSTEM_CRASH');
-    await delay(400);
+    await delay(100);
     term.echo('CRASH REPORTED');
-    await delay(400);
-
-    // Wallpaper of Chaos
-    window.location.href = "./system-crash.html";
+    await delay(100);
 
     state = 'menu';
     animation = false;
@@ -220,12 +186,12 @@ async function termHackSequence(term) {
 
 async function termMenu(term){
     emailEntered = true;
-    purposeEntered = true;
+    //purposeEntered = true;
     term.clear();
     animation = true;
     term.set_prompt('');
     term.set_prompt('FRM-CONTROL> ')
-    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t\n[3] Remnant 01\t\n');
+    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t[3] Home\t\t\n[4] Remnant 01\t\n');
     animation = false;
     term.set_prompt('FRM-CONTROL> ')
     dataEntryMode = true;
@@ -241,22 +207,20 @@ var term = $('.terminal-dialog .body').terminal(async function(command) {
             if(validateEmail(command.trim())){
                 email = command.trim();
                 emailEntered = true;
-                term.echo('\nWhat is your purpose here?');
-                term.set_prompt('# ');
+                //term.echo('\nWhat is your purpose here?');
+                //term.set_prompt('# ');
+                
+                // after last attribute is entered, submit data to Klaviyo API
+                // ensure function is edited to include all fields to add to Klaviyo profile
+                await klaviyoPostProfile();
+                term.echo('\nData comm transmission processed.');
+                dataEntryMode = false;
+                state = 'login_completed';
+                terminalStateFunctions[state](term);
             }else{
                 term.echo('\nInvalid email entered. Enter valid email address:');
                 term.set_prompt('# ');
             }
-        }else if(!purposeEntered){
-            purpose = command;
-            purposeEntered = true;
-            // after last attribute is entered, submit data to Klaviyo API
-            // ensure function is edited to include all fields to add to Klaviyo profile
-            await klaviyoPostProfile();
-            term.echo('\nData comm transmission processed.');
-            dataEntryMode = false;
-            state = 'login_completed';
-            terminalStateFunctions[state](term);
         }else{
             if(menuCommandFunctions.hasOwnProperty(command)){
                 await menuCommandFunctions[command](term);

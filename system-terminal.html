@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>[ Loading ] Next...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/36786.css">
+
+  <style>
+    #dataMoshPit_bkg {
+      position: absolute;
+      z-index: 1;
+    }
+
+    #dataMoshPit_1 {
+      z-index: 2;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    #dataMoshPit_2, #dataMoshPit_3 {
+      z-index: 100;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="dataMoshPit_bkg"></div>
+  <div id="dataMoshPit_1"></div>
+
+  <pre id="ascii"></pre>
+  <div class="terminal-dialog">
+      <header>
+          <ul>
+              <li><a href="#"></a></li>
+          </ul>
+          <span class="title">Loading</span>
+      </header>
+      <div class="body"></div>
+  </div>
+
+  <div id="dataMoshPit_2"></div>
+  <div id="dataMoshPit_3"></div>
+
+  <script  src="lib/req.min.js"></script>
+  <script  src="lib/play/p5.play.js"></script>
+  <script src="./sketch.js"></script>
+  <script  type="module" src="./datamosh.js"></script>
+
+</body>
+</html>
