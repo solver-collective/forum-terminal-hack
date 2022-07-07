@@ -67,6 +67,7 @@ const menuCommandFunctions = {
     '4': (term) => termMenuVideo(term, '01'),
     '5': (term) => termMenuVideo(term, '02'),
     '6': (term) => termMenuVideo(term, '03'),
+    '96': (term) => termMenuInstashare(term)
 }
 
 async function termMenuInfo(term){
@@ -77,8 +78,13 @@ async function termMenuReboot(term){
     termHackSequence(term) // Reboot
 }
 
+// Testing Instagram share
 async function termMenuWallpaper(term){
     window.location.href = "./index.html";
+}
+
+async function termMenuInstashare(term){
+    term.echo('<a href="./i/video-poster__720x1280.gif" download="share-inst-poster-1">Click here to download sharable image from Us</a>', {raw: true});
 }
 
 async function termMenuVideo(term, number){
