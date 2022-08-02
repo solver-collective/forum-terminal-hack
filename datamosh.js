@@ -85,7 +85,7 @@ async function termMenuWallpaper(term){
 }
 
 async function termDropBox(term){
-    term.echo('<a href="https://www.dropbox.com/sh/zdkdsr55iyjaje9/AABL3cVbMLxfLx_XBANbWvpva?dl=0" target="_blank">Social Sharing Assets</a><br><br>', {raw: true});
+    window.open('https://www.dropbox.com/sh/zdkdsr55iyjaje9/AABL3cVbMLxfLx_XBANbWvpva?dl=0', '_blank');
 }
 
 async function termMenuInstashare(term){
