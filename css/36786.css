@@ -119,3 +119,7 @@ input:focus, textarea:focus, select:focus{
     height: 14px;
     border: 2px solid var(--background);
 }
+
+.terminal-dialog a {
+    color: var(--color);
+}

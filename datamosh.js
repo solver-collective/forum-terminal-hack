@@ -64,9 +64,10 @@ const menuCommandFunctions = {
     '1': (term) => termMenuInfo(term) ,
     '2': (term) => termMenuReboot(term),
     '3': (term) => termMenuWallpaper(term),
-    '4': (term) => termMenuVideo(term, '01'),
-    '5': (term) => termMenuVideo(term, '02'),
-    '6': (term) => termMenuVideo(term, '03'),
+    '4': (term) => termDropBox(term),
+    '5': (term) => termMenuVideo(term, '01'),
+    '6': (term) => termMenuVideo(term, '02'),
+    '7': (term) => termMenuVideo(term, '03'),
     '96': (term) => termMenuInstashare(term)
 }
 
@@ -81,6 +82,10 @@ async function termMenuReboot(term){
 // Testing Instagram share
 async function termMenuWallpaper(term){
     window.location.href = "./index.html";
+}
+
+async function termDropBox(term){
+    term.echo('<a href="https://www.dropbox.com/sh/zdkdsr55iyjaje9/AABL3cVbMLxfLx_XBANbWvpva?dl=0" target="_blank">Social Sharing Assets</a><br><br>', {raw: true});
 }
 
 async function termMenuInstashare(term){
@@ -200,7 +205,7 @@ async function termMenu(term){
     animation = true;
     term.set_prompt('');
     term.set_prompt('FRM-CONTROL> ')
-    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t[3] Home\t\t\n[4] Remnant 01\n[5] Remnant 02\n[6] Remnant 03\n');
+    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t[3] Home\n[4] Social Sharing Assets\n\n[5] Remnant 01\n[6] Remnant 02\n[7] Remnant 03\n');
     animation = false;
     term.set_prompt('FRM-CONTROL> ')
     dataEntryMode = true;
