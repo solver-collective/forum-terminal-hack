@@ -205,7 +205,7 @@ async function termMenu(term){
     animation = true;
     term.set_prompt('');
     term.set_prompt('FRM-CONTROL> ')
-    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t[3] Home\n[4] Social Sharing Assets\n\n[5] Remnant 01\n[6] Remnant 02\n[7] Remnant 03\n');
+    term.echo('[AUTHENTICATED]\n\nMake a selection:\n[1] Info\t\t[2] Reboot\t\t[3] Home\n[4] DOWNLOADS\n\n[5] Remnant 01\n[6] Remnant 02\n[7] Remnant 03\n');
     animation = false;
     term.set_prompt('FRM-CONTROL> ')
     dataEntryMode = true;
